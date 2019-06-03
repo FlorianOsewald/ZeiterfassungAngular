@@ -27,9 +27,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Used VS-Code Plugins:
-Angular 8 Snippets
-Angular Files
-Angular2-inline
-Angular2-switcher
-Auto import
-TSLint
+* Angular 8 Snippets
+* Angular Files
+* Angular2-inline
+* Angular2-switcher
+* Auto import
+* TSLint
