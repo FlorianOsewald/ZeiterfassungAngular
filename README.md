@@ -28,3 +28,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Startup: 
 navigate to project top folder /Zeiterfassung and run 'ng serve'
+
+## Used VS-Code Plugins:
+Angular 8 Snippets
+Angular Files
+Angular2-inline
+Angular2-switcher
+Auto import
+TSLint
