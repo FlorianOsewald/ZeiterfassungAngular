@@ -1,22 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
 /* Application-wide Styles */
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 h1 {
     color: #369;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 250%;
+    text-align: left;
   }
   h2, h3 {
-    color: #444;
+    color: rgba(252, 239, 239, 0.781);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
   }
-  body {
-    margin: 2em;
-  }
   body, input[type="text"], button {
-    color: #333;
+    color: #fff;
+    background: #333;
     font-family: Cambria, Georgia;
   }
+
+  /* Navigation Buttons */
+  .btn-nav {
+    background: none;
+    border: 3px solid #fff;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 15px 30px;
+    -moz-transition: all 0.3s;
+    outline: none;
+    overflow: hidden;
+    padding: 25px 80px;
+    position: relative;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    width: 300px;
+  }
+  .btn-nav:after {
+    background: #fff;
+    content: '';
+    height: 0;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    -moz-transition: all 0.3s;
+    -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    transition: all 0.3s;
+    -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    -webkit-transition: all 0.3s;
+    width: 100%;
+    z-index: -1;
+
+  }
+  
+  .btn-nav:hover,
+  .btn-nav:active {
+    color: #0e83cd;
+  }
+  
+  .btn-nav:hover:after {
+    height: 260%;
+    opacity: 1;
+  }
+  
+  .btn-nav:active:after {
+    height: 400%;
+    opacity: 1;
+  }
+
   /* everywhere else */
   * {
     font-family: Arial, Helvetica, sans-serif;
