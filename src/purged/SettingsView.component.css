@@ -1,14 +1,12 @@
-@import "https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400";
-
 h1{
     text-align: center;
     padding-bottom: 50px;
 }
-
-input[type="radio"] {
-    vertical-align: -2px;
-    align-content: center;
-}
+@import "https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400";
+/* colors */
+/* tab setting */
+/* breakpoints */
+/* selectors relative to radio inputs */
 
 .tabs {
   left: 50%;
@@ -226,81 +224,3 @@ input[type="radio"] {
     display: block;
   }
 }
-
-.contact100-form {
-    width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding-bottom: 68px;
-  }
-  .wrap-input100 {
-    width: 100%;
-    position: relative;
-    border-bottom: 2px solid #fff; /*Borderline*/
-    padding-bottom: 13px;
-    margin-bottom: 20px;
-  }
-
-  .wrap-input100:focus-within {
-    border-bottom: 2px solid #0e83cd !important;
-    
-  }
-  .rs1-wrap-input100 {
-    width: calc((100% - 30px) / 2);
-  }
-  .validate-input {
-    position: relative;
-  }
-  .label-input100 {
-    font-family: Poppins-Regular;
-    font-size: 15px;
-    color: #999999; /*Label Farbe*/
-    line-height: 1.5;
-    padding-left: 5px;
-  }
-
-  .input100 {
-    display: block;
-    width: 100%;
-    background: transparent;
-    font-family: Poppins-SemiBold;
-    font-size: 18px;
-    color: #ffffff; /*Schriftfarbe in Inputfeldern*/
-    border: none;
-    outline: none;
-    line-height: 1.2;
-    padding: 0 5px;
-  }  
-
-  .focus-input100 {
-      z-index: 2;
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-  }
-  
-  .focus-input100:focus {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    transition: all 0.4s;  
-    background: #627fff;
-  }
-
-

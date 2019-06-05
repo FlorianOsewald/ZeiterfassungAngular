@@ -1,8 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 /* Application-wide Styles */
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+.colorMainBlue {
+  color: #0e83cd;
+}
+
+.colorMainWhite {
+  color: #fff;
+}
+
 h1 {
-    color: #369;
+    color: var(colorMainBlue);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 250%;
     text-align: left;

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./SettingsView.component.css']
 })
 export class SettingsViewComponent implements OnInit {
-
+  title = 'Settings';
   constructor() { }
 
   ngOnInit() {

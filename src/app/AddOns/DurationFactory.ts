@@ -30,7 +30,6 @@ export class DurationFactory {
         } else {
             // Do nothing i guess;
         }
-
         return allBreaksDuration;
     }
 

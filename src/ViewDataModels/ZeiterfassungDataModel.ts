@@ -17,4 +17,8 @@ export class ZeiterfassungDataModel {
         this.lastBreakEnd = '-/-';
         this.state = ProgramState.ArbeitEnde;
     }
+
+    static load() {
+        return new ZeiterfassungDataModel();
+    }
 }

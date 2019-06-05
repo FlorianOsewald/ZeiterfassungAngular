@@ -1,3 +1,159 @@
-<p>
-  SettingsView works!
-</p>
+<h1>{{title}}</h1>
+<div class="tabs">
+
+  <input type="radio" id="tabDetail" name="tab-control" checked>
+  <input type="radio" id="tabClockR" name="tab-control">
+  <input type="radio" id="tabUser" name="tab-control">
+  <input type="radio" id="tabAdmin" name="tab-control">
+  <ul>
+    <li title="Details"><label for="tabDetail" role="button">
+        <span>Details</span></label></li>
+    <li title="ClockR"><label for="tabClockR" role="button">
+        <span>ClockR</span></label></li>
+    <li title="User"><label for="tabUser" role="button">
+        <span>User</span></label></li>
+    <li title="Admin"><label for="tabAdmin" role="button">
+        <span>Admin</span></label></li>
+  </ul>
+  <div class="slider">
+    <div class="indicator"></div>
+  </div>
+  <div class="content">
+    <section>
+      <h2>Details</h2>
+      <div>
+        <table>
+          <tr>
+            <td>
+              <p>Anrede:</p>
+            </td>
+            <td>
+              <form>
+                <fieldset style="border: hidden">
+                  <label>
+                    <input type="radio" id="Herr" name="Anrede" value="Herr" />
+                    Herr
+                  </label>
+                  <label>
+                    <input type="radio" id="Frau" name="Anrede" value="Frau" />
+                    Frau
+                  </label>
+                </fieldset>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Vorname:</p>
+            </td>
+            <td>
+              <form>
+                <input type="text" />
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Nachname:</p>
+            </td>
+            <td>
+              <form>
+                <input type="text" />
+              </form>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <h2>ClockR</h2>
+      <form class="contact100-form">
+          <div class="wrap-input100 rs1-wrap-input100 validate-input">
+            <span class="label-input100">ClockR Handle</span>
+            <input class="input100" type="text" name="name" placeholder="@ClockR_User">
+            <span class="focus-input100"></span>
+          </div>
+          <div class="wrap-input100 validate-input">
+            <span class="label-input100">Arbeit-Start-ClockR</span>
+            <textarea class="input100" name="message" placeholder="Gerade angekommen! #TimeForWorkBois"></textarea>
+            <span class="focus-input100"></span>
+          </div>
+          <div class="wrap-input100 validate-input">
+              <span class="label-input100">Pause-Start-ClockR</span>
+              <textarea class="input100" name="message" placeholder="Erstmal Pause #OhneMampfKeinKampf"></textarea>
+              <span class="focus-input100"></span>
+            </div>
+            <div class="wrap-input100 validate-input">
+                <span class="label-input100">Pause-Ende-ClockR</span>
+                <textarea class="input100" name="message" placeholder="Zurück an die Arbeit! #EmailChecken"></textarea>
+                <span class="focus-input100"></span>
+              </div>
+              <div class="wrap-input100 validate-input">
+                  <span class="label-input100">Arbeit-Ende-ClockR</span>
+                  <textarea class="input100" name="message" placeholder="Zeit nach Hause zu gehen #AllesMauImStau"></textarea>
+                  <span class="focus-input100"></span>
+                </div>
+        </form>
+    </section>
+    <section>
+      <h2>User</h2>
+      <div>
+        <form>
+          <table>
+            <tr>
+              <td>
+                <label>
+                  Login
+                </label>
+                <input type="text" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Neues Passwort</label>
+                <input type="password" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Bestätigen</label>
+                <input type="password" />
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </section>
+    <section>
+      <h2>Admin</h2>
+      <div>
+        <p>Neuen User anlegen</p>
+        <form>
+          <table>
+            <tr>
+              <td>
+                <label>
+                  Login
+                </label>
+                <input type="text" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Neues Passwort</label>
+                <input type="password" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>User-Rolle</label>
+                <input type="text" />
+              </td>
+            </tr>
+          </table>
+        </form>
+        <button>User anlegen</button>
+      </div>
+    </section>
+  </div>
+</div>

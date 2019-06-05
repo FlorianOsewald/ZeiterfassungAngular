@@ -1,13 +1,13 @@
 <div style="align-content: center">
     <table style="width: 100%">
         <tr>
-            <td colspan="4" align="center">
+            <td colspan="4">
                 <h1>{{title}}</h1>
             </td>
         </tr>
         <tr>
             <td>
-                <button>Start</button>
+                <button class="eventButton" (click)=OnStartPressed()>Start</button>
             </td>
             <td>
                 <p>{{zeiterfassung.startTime}}</p>
@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <td>
-                <button>Pause</button>
+                <button class="eventButton" (click)=OnPauseStartPressed()>Pause</button>
             </td>
             <td>
                 <p>{{zeiterfassung.lastBreakStart}}</p>
@@ -29,7 +29,7 @@
         </tr>
         <tr>
                 <td>
-                    <button>Ende</button>
+                    <button class="eventButton" (click)=OnPauseEndPressed()>Ende</button>
                 </td>
                 <td>
                     <p>{{zeiterfassung.lastBreakEnd}}</p>
@@ -43,7 +43,7 @@
         </tr>
         <tr>
                 <td>
-                    <button>Arbeitsende</button>
+                    <button class="eventButton" (click)=OnEndePressed()>Arbeitsende</button>
                 </td>
                 <td>
                     <p>{{zeiterfassung.endTime}}</p>
