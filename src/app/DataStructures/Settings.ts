@@ -1,11 +1,12 @@
-﻿
-    class Settings {
-        IsMaleAnrede: boolean;
-        Name: string;
-        State: ProgramState;
+﻿import { ProgramState } from './ProgramState';
 
-        ToString() {
-            return 'isMaleAnrede:' + this.IsMaleAnrede + '\tName:' + this.Name;
-        }
+export class Settings {
+    IsMaleAnrede: boolean;
+    Name: string;
+    State: ProgramState;
+
+    toString() {
+        return 'isMaleAnrede:' + this.IsMaleAnrede + '\tName:' + this.Name;
     }
+}
 

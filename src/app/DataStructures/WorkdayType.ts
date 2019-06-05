@@ -1,8 +1,7 @@
-﻿    enum WorkdayType
-    {
-        Arbeitstag,
-        FeiertagHalb,
-        FeiertagGanz,
-        UrlaubHalb,
-        UrlaubGanz
-    }
+﻿export enum WorkdayType {
+    Arbeitstag,
+    FeiertagHalb,
+    FeiertagGanz,
+    UrlaubHalb,
+    UrlaubGanz
+}

@@ -1,11 +1,13 @@
-﻿
+﻿import { ProgramState } from './ProgramState';
+import { Timestamp } from './Timestamp';
 
-class DailyEvent {
-        time: Timestamp;
-        eventType: ProgramState;
 
-        ToString() {
-            return this.time.ToString() + ' ' + this.eventType.toString();
-        }
+export class DailyEvent {
+    time: Timestamp;
+    eventType: ProgramState;
+
+    toString() {
+        return this.time.toString() + ' ' + this.eventType.toString();
     }
+}
 

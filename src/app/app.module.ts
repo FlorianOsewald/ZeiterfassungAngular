@@ -15,7 +15,7 @@ import { WallViewComponent } from '../WallView/WallView.component';
       ZeiterfassungsViewComponent,
       SettingsViewComponent,
       CorrectionsViewComponent,
-      WallViewComponent
+      WallViewComponent,
    ],
    imports: [
       BrowserModule,

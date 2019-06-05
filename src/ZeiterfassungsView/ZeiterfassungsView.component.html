@@ -1,7 +1,53 @@
-<h2>{{hero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div>
-  <label>name:
-    <input [(ngModel)]="hero.name" placeholder="name"/>
-  </label>
+<div style="align-content: center">
+    <table style="width: 100%">
+        <tr>
+            <td colspan="4" align="center">
+                <h1>{{title}}</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button>Start</button>
+            </td>
+            <td>
+                <p>{{zeiterfassung.startTime}}</p>
+            </td>
+            <td>
+                <p>Arbeitszeit gesamt:</p>
+            </td>
+            <td>
+                <p>{{zeiterfassung.workday.TotalWorktime}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button>Pause</button>
+            </td>
+            <td>
+                <p>{{zeiterfassung.lastBreakStart}}</p>
+            </td>
+        </tr>
+        <tr>
+                <td>
+                    <button>Ende</button>
+                </td>
+                <td>
+                    <p>{{zeiterfassung.lastBreakEnd}}</p>
+                </td>
+                <td>
+                    <p>Pause gesamt:</p>
+                </td>
+                <td>
+                    <p>{{zeiterfassung.workday.TotalBreakTime}}</p>
+                </td>
+        </tr>
+        <tr>
+                <td>
+                    <button>Arbeitsende</button>
+                </td>
+                <td>
+                    <p>{{zeiterfassung.endTime}}</p>
+                </td>
+        </tr>
+    </table>
 </div>

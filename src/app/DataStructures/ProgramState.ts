@@ -1,9 +1,7 @@
-﻿
-    enum ProgramState
-    {
-        ArbeitStart,
-        PauseStart,
-        PauseEnde,
-        ArbeitEnde
-    }
+﻿export enum ProgramState {
+    ArbeitStart,
+    PauseStart,
+    PauseEnde,
+    ArbeitEnde
+}
 
