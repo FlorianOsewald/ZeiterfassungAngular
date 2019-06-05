@@ -21,139 +21,111 @@
   <div class="content">
     <section>
       <h2>Details</h2>
-      <div>
-        <table>
-          <tr>
-            <td>
-              <p>Anrede:</p>
-            </td>
-            <td>
-              <form>
-                <fieldset style="border: hidden">
-                  <label>
-                    <input type="radio" id="Herr" name="Anrede" value="Herr" />
-                    Herr
-                  </label>
-                  <label>
-                    <input type="radio" id="Frau" name="Anrede" value="Frau" />
-                    Frau
-                  </label>
-                </fieldset>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>Vorname:</p>
-            </td>
-            <td>
-              <form>
-                <input type="text" />
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>Nachname:</p>
-            </td>
-            <td>
-              <form>
-                <input type="text" />
-              </form>
-            </td>
-          </tr>
-        </table>
-      </div>
+      <form class="form-Base">
+        <div class="div-form-wrap-radio div-half-width">
+          <span class="input-descriptor-label-radio">Anrede</span>
+          <label class="radio">
+            <input type="radio" name="Anrede" value="Herr">
+            <span>Herr</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="Anrede" value="Frau">
+            <span>Frau</span>
+          </label>
+        </div>
+        <div style="visibility: hidden">
+          <span>HIDDEN FOR SPACING</span>
+        </div>
+        <div class="div-input-wrapper div-half-width">
+          <span class="input-descriptor-label">Vorname</span>
+          <input class="input-base" type="text" name="name" placeholder="Vorname">
+          <span class="span-focus"></span>
+        </div>
+        <div class="div-input-wrapper div-half-width">
+          <span class="input-descriptor-label">Nachname</span>
+          <input class="input-base" type="text" name="name" placeholder="Nachname">
+          <span class="span-focus"></span>
+        </div>
+      </form>
     </section>
     <section>
       <h2>ClockR</h2>
-      <form class="contact100-form">
-          <div class="wrap-input100 rs1-wrap-input100 validate-input">
-            <span class="label-input100">ClockR Handle</span>
-            <input class="input100" type="text" name="name" placeholder="@ClockR_User">
-            <span class="focus-input100"></span>
-          </div>
-          <div class="wrap-input100 validate-input">
-            <span class="label-input100">Arbeit-Start-ClockR</span>
-            <textarea class="input100" name="message" placeholder="Gerade angekommen! #TimeForWorkBois"></textarea>
-            <span class="focus-input100"></span>
-          </div>
-          <div class="wrap-input100 validate-input">
-              <span class="label-input100">Pause-Start-ClockR</span>
-              <textarea class="input100" name="message" placeholder="Erstmal Pause #OhneMampfKeinKampf"></textarea>
-              <span class="focus-input100"></span>
-            </div>
-            <div class="wrap-input100 validate-input">
-                <span class="label-input100">Pause-Ende-ClockR</span>
-                <textarea class="input100" name="message" placeholder="Zurück an die Arbeit! #EmailChecken"></textarea>
-                <span class="focus-input100"></span>
-              </div>
-              <div class="wrap-input100 validate-input">
-                  <span class="label-input100">Arbeit-Ende-ClockR</span>
-                  <textarea class="input100" name="message" placeholder="Zeit nach Hause zu gehen #AllesMauImStau"></textarea>
-                  <span class="focus-input100"></span>
-                </div>
-        </form>
+      <form class="form-Base">
+        <div class="div-input-wrapper div-half-width ">
+          <span class="input-descriptor-label">ClockR Handle</span>
+          <input class="input-base" type="text" name="name" placeholder="@ClockR_User">
+          <span class="span-focus"></span>
+        </div>
+        <div class="div-input-wrapper ">
+          <span class="input-descriptor-label">Arbeit-Start-ClockR</span>
+          <textarea class="input-base" name="message" placeholder="Gerade angekommen! #TimeForWorkBois"></textarea>
+          <span class="span-focus"></span>
+        </div>
+        <div class="div-input-wrapper ">
+          <span class="input-descriptor-label">Pause-Start-ClockR</span>
+          <textarea class="input-base" name="message" placeholder="Erstmal Pause #OhneMampfKeinKampf"></textarea>
+          <span class="span-focus"></span>
+        </div>
+        <div class="div-input-wrapper ">
+          <span class="input-descriptor-label">Pause-Ende-ClockR</span>
+          <textarea class="input-base" name="message" placeholder="Zurück an die Arbeit! #EmailChecken"></textarea>
+          <span class="span-focus"></span>
+        </div>
+        <div class="div-input-wrapper ">
+          <span class="input-descriptor-label">Arbeit-Ende-ClockR</span>
+          <textarea class="input-base" name="message" placeholder="Zeit nach Hause zu gehen #AllesMauImStau"></textarea>
+          <span class="span-focus"></span>
+        </div>
+      </form>
     </section>
     <section>
       <h2>User</h2>
-      <div>
-        <form>
-          <table>
-            <tr>
-              <td>
-                <label>
-                  Login
-                </label>
-                <input type="text" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>Neues Passwort</label>
-                <input type="password" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>Bestätigen</label>
-                <input type="password" />
-              </td>
-            </tr>
-          </table>
-        </form>
-      </div>
+      <form class="form-Base">
+        <div class="div-input-wrapper div-half-width">
+          <span class="input-descriptor-label">Login</span>
+          <input class="input-base" type="text" name="name" placeholder="username">
+          <span class="span-focus"></span>
+        </div>
+        <div style="visibility: hidden">
+          <span>HIDDEN FOR SPACING</span>
+        </div>
+        <div class="div-input-wrapper div-half-width">
+          <span class="input-descriptor-label">Neues Passwort</span>
+          <input class="input-base" type="password" name="name" placeholder="neues Passwort">
+          <span class="span-focus"></span>
+        </div>
+        <div class="div-input-wrapper div-half-width">
+          <span class="input-descriptor-label">Bestätigen</span>
+          <input class="input-base" type="password" name="name" placeholder="Bestätigen">
+          <span class="span-focus"></span>
+        </div>
+      </form>
     </section>
     <section>
       <h2>Admin</h2>
-      <div>
-        <p>Neuen User anlegen</p>
-        <form>
-          <table>
-            <tr>
-              <td>
-                <label>
-                  Login
-                </label>
-                <input type="text" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>Neues Passwort</label>
-                <input type="password" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>User-Rolle</label>
-                <input type="text" />
-              </td>
-            </tr>
-          </table>
-        </form>
-        <button>User anlegen</button>
-      </div>
+      <form class="form-Base">
+        <div>
+          <h3>Neuen User anlegen</h3>
+        </div>
+        <div style="visibility: hidden">
+          <span>HIDDEN FOR SPACING</span>
+        </div>
+        <div class="div-input-wrapper div-half-width">
+          <span class="input-descriptor-label">Login</span>
+          <input class="input-base" type="text" name="name" placeholder="username">
+          <span class="span-focus"></span>
+        </div>
+        <div class="div-input-wrapper div-half-width">
+          <span class="input-descriptor-label">Passwort</span>
+          <input class="input-base" type="password" name="name" placeholder="Passwort">
+          <span class="span-focus"></span>
+        </div>
+        <div class="div-input-wrapper div-half-width">
+          <span class="input-descriptor-label">User-Rolle</span>
+          <input class="input-base" type="text" name="name" placeholder="user-rolle">
+          <span class="span-focus"></span>
+        </div>
+      </form>
     </section>
   </div>
 </div>

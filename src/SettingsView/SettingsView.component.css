@@ -1,15 +1,19 @@
 @import "https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400";
 
+/*#region Headerstyles*/
 h1{
     text-align: center;
     padding-bottom: 50px;
 }
 
-input[type="radio"] {
-    vertical-align: -2px;
-    align-content: center;
+h3 {
+  font-family: Poppins-Regular;
+  font-size: 20px;
+  color: #fff; /*Label Farbe*/
 }
+/*#endregion Headerstyles*/
 
+/*#region Tabgroup*/
 .tabs {
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -18,7 +22,7 @@ input[type="radio"] {
   padding: 50px;
   padding-bottom: 80px;
   width: 70%;
-  height: 250px;
+  height: auto;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   border-radius: 5px;
   min-width: 240px;
@@ -52,7 +56,7 @@ input[type="radio"] {
 }
 .tabs ul li label {
   transition: all 0.3s ease-in-out;
-  color: #929daf;
+  color: #fff;
   padding: 5px auto;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -102,7 +106,6 @@ input[type="radio"] {
   line-height: 1.4;
 }
 .tabs .content section h2 {
-  color: #428BFF;
   display: none;
 }
 .tabs .content section h2::after {
@@ -227,7 +230,11 @@ input[type="radio"] {
   }
 }
 
-.contact100-form {
+/*#endregion Tabgroup*/
+
+/*#region SettingFormStyles*/
+
+.form-Base {
     width: 100%;
     display: -webkit-box;
     display: -webkit-flex;
@@ -238,7 +245,8 @@ input[type="radio"] {
     justify-content: space-between;
     padding-bottom: 68px;
   }
-  .wrap-input100 {
+
+  .div-input-wrapper {
     width: 100%;
     position: relative;
     border-bottom: 2px solid #fff; /*Borderline*/
@@ -246,38 +254,65 @@ input[type="radio"] {
     margin-bottom: 20px;
   }
 
-  .wrap-input100:focus-within {
+  .div-input-wrapper:focus-within {
     border-bottom: 2px solid #0e83cd !important;
-    
   }
-  .rs1-wrap-input100 {
-    width: calc((100% - 30px) / 2);
+
+  .div-input-wrapper:focus-within .input-descriptor-label {
+    text-decoration: underline;
   }
-  .validate-input {
+
+  .div-form-wrap-radio {
+    width: 100%;
     position: relative;
+    border-bottom: 2px solid #fff; /*Borderline*/
+    padding-bottom: 13px;
+    margin-bottom: 20px;
   }
-  .label-input100 {
+
+  .input-descriptor-label-radio {
     font-family: Poppins-Regular;
-    font-size: 15px;
-    color: #999999; /*Label Farbe*/
+    font-size: 20px;
+    color: #fff; /*Label Farbe*/
     line-height: 1.5;
     padding-left: 5px;
   }
 
-  .input100 {
+  .div-form-wrap-radio:hover {
+    border-bottom: 2px solid #0e83cd !important;
+  }
+
+  .div-form-wrap-radio:hover .input-descriptor-label-radio {
+    text-decoration: underline;
+  }
+
+  .div-half-width {
+    width: calc((100% - 30px) / 2);
+  }
+
+  .input-descriptor-label {
+    font-family: Poppins-Regular;
+    font-size: 20px;
+    color: #fff; /*Label Farbe*/
+    line-height: 1.5;
+    padding-left: 5px;
+  }
+
+  .input-base {
     display: block;
     width: 100%;
     background: transparent;
     font-family: Poppins-SemiBold;
     font-size: 18px;
-    color: #ffffff; /*Schriftfarbe in Inputfeldern*/
+    color: #b2c0dd; /*Schriftfarbe in Inputfeldern*/
     border: none;
     outline: none;
     line-height: 1.2;
     padding: 0 5px;
+    resize: vertical;
   }  
 
-  .focus-input100 {
+  .span-focus {
       z-index: 2;
     position: absolute;
     display: block;
@@ -288,7 +323,7 @@ input[type="radio"] {
     pointer-events: none;
   }
   
-  .focus-input100:focus {
+  .span-focus:focus {
     content: "";
     display: block;
     position: absolute;
@@ -300,7 +335,76 @@ input[type="radio"] {
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
     transition: all 0.4s;  
-    background: #627fff;
+
   }
 
+/*#endregion SettingFormStyles*/
 
+/*#region Radiobuttons*/
+  .radio {
+    margin: 16px 0;
+    display: block;
+    cursor: pointer;
+  }
+  .radio input {
+    display: none;
+  }
+  .radio input + span {
+    line-height: 22px;
+    height: 22px;
+    padding-left: 22px;
+    display: block;
+    position: relative;
+  }
+  .radio input + span:not(:empty) {
+    padding-left: 30px;
+  }
+  .radio input + span:before, .radio input + span:after {
+    content: '';
+    width: 22px;
+    height: 22px;
+    display: block;
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    position: absolute;
+  }
+  .radio input + span:before {
+    background: #D1D7E3;
+    transition: background 0.2s ease, -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+    transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+    transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2), -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+  }
+  .radio input + span:after {
+    background: #fff;
+    -webkit-transform: scale(0.78);
+            transform: scale(0.78);
+    transition: -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4), -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+  }
+  .radio input:checked + span:before {
+    -webkit-transform: scale(1.04);
+            transform: scale(1.04);
+    background: #5D9BFB;
+  }
+  .radio input:checked + span:after {
+    -webkit-transform: scale(0.4);
+            transform: scale(0.4);
+    transition: -webkit-transform .3s ease;
+    transition: transform .3s ease;
+    transition: transform .3s ease, -webkit-transform .3s ease;
+  }
+  .radio:hover input + span:before {
+    -webkit-transform: scale(0.92);
+            transform: scale(0.92);
+  }
+  .radio:hover input + span:after {
+    -webkit-transform: scale(0.74);
+            transform: scale(0.74);
+  }
+  .radio:hover input:checked + span:after {
+    -webkit-transform: scale(0.4);
+            transform: scale(0.4);
+  }
+/*#endregion Radiobuttons*/
