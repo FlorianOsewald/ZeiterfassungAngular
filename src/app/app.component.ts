@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
   title = 'Zeiterfassung';
-  showZeiterfassung = false;
-  showSettings = true;
+  showZeiterfassung = true;
+  showSettings = false;
   showCorrections = false;
   showFeed = false;
 

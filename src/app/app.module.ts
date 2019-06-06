@@ -20,7 +20,7 @@ import { WallViewComponent } from '../WallView/WallView.component';
    imports: [
       BrowserModule,
       AppRoutingModule,
-      FormsModule
+      FormsModule,
    ],
    providers: [],
    bootstrap: [

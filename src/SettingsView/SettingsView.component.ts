@@ -1,3 +1,4 @@
+import { SettingsDataModel } from './../ViewDataModels/SettingsDataModel';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsViewComponent implements OnInit {
   title = 'Settings';
+  settings: SettingsDataModel;
+
   constructor() { }
 
   ngOnInit() {
+    this.settings = SettingsDataModel.load();
+  }
+
+  onSaveDetails() {
+
+  }
+
+  onSaveClockR() {
+
+  }
+
+  onSaveUser() {
+
+  }
+
+  onSaveAdmin() {
+
   }
 
 }

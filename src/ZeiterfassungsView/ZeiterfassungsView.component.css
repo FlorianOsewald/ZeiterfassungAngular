@@ -1,7 +1,76 @@
+/*#region BaseStyles*/
+
 h1{
     text-align: center;
     padding-bottom: 50px;
 }
+
+span {
+	position: absolute;
+  bottom: 0;
+}
+
+h2 {
+	color: #fff;
+	font-family: Poppins-Regular;
+}
+/*#endregion BaseStyles */
+
+/*#region div-container-styles*/
+
+.div-content-box {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    position: relative;
+    padding: 50px;
+    padding-bottom: 80px;
+    width: 70%;
+    height: auto;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 5px;
+    min-width: 240px;
+}
+
+.div-content-area {
+	width: 100%;
+	display: flex;
+    position: relative;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 13px;
+    margin-bottom: 20px;
+}
+
+.div-borderless {
+	border: none;
+}
+
+.div-half-width {
+	width: calc((100% - 30px) / 2);
+}
+
+.div-button-placer {
+	display: flex;
+	justify-content: flex-start;
+}
+.div-label-placer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.div-button-label-wrapper {
+	display: flex;
+}
+
+.div-spacer {
+	width: 100%;
+	height: 100px;
+}
+
+/*#endregion div-container-styles*/
+
+/*#region button-styles*/
 
 .eventButton {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -44,3 +113,5 @@ h1{
 	position:relative;
 	top:1px;
 }
+
+/*#endregion button-styles*/
