@@ -22,8 +22,9 @@
     <section>
       <h2>Details</h2>
       <form class="form-Base" autocomplete="off">
-        <div class="div-form-wrap-radio div-half-width">
-          <span class="input-descriptor-label-radio">Anrede</span>
+        <div class="div-half-width">
+            <span class="input-descriptor-label-radio">Anrede</span>
+        <div class="div-form-wrap-radio">
           <label class="radio">
             <input type="radio" name="details_anrede" [(ngModel)]="settings.settingsDetailDataModel.isMaleAnrede" [value]="true">
             <span>Herr</span>
@@ -33,6 +34,7 @@
             <span>Frau</span>
           </label>
         </div>
+      </div>
         <div style="visibility: hidden">
           <span>HIDDEN FOR SPACING</span>
         </div>

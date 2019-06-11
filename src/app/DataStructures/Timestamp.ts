@@ -3,8 +3,13 @@
     minutes: number;
 
     constructor(dateTime?: Date) {
+        if(dateTime !== undefined) {
         this.hours = dateTime.getHours();
         this.minutes = dateTime.getMinutes();
+        } else {
+            this.hours = 0;
+            this.minutes = 0;
+        }
     }
 
     toString() {

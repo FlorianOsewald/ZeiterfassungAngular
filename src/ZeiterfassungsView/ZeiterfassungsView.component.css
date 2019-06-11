@@ -10,8 +10,11 @@ span {
   bottom: 0;
 }
 
-h2 {
+.span-as-header {
 	color: #fff;
+	position: absolute;
+	bottom: 0;
+	font-size: 25pt;
 	font-family: Poppins-Regular;
 }
 /*#endregion BaseStyles */
@@ -34,11 +37,17 @@ h2 {
 
 .div-content-area {
 	width: 100%;
-	display: flex;
     position: relative;
     border-bottom: 2px solid #fff;
+    /*Borderline*/
     padding-bottom: 13px;
     margin-bottom: 20px;
+}
+
+.div-content-wrapper {
+	width: 100%; 
+	display: flex; 
+	justify-content: space-between
 }
 
 .div-borderless {
@@ -55,12 +64,12 @@ h2 {
 }
 .div-label-placer {
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-end;
 }
 
 .div-button-label-wrapper {
 	display: flex;
+	justify-content: space-between;
 }
 
 .div-spacer {

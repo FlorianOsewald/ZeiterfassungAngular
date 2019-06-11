@@ -1,0 +1,232 @@
+/*#region header-styles*/
+h1{
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+/*#endregion header-styles*/
+
+/*#region div-styles*/
+
+.div-content-box {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    position: relative;
+    padding: 50px;
+    padding-bottom: 80px;
+    width: 70%;
+    height: auto;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 5px;
+    min-width: 240px;
+}
+
+.div-card {
+    width: 90%;
+    padding: 10px 10px;
+    border: 2px solid #fff; 
+    margin-bottom: 30px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-content: center;
+    cursor: pointer;
+}
+
+.div-card:hover {
+    border: 4px solid #0e83cd; 
+}
+
+.div-card-selected-input-wrapper {
+    width: 100%;
+    position: relative;
+    border-bottom: 2px solid #fff;
+    /*Borderline*/
+    padding-bottom: 13px;
+   display: flex;
+    margin-bottom: 20px;
+}
+
+.div-selected-half-third {
+    width: calc((100% - 80px) / 2); 
+    height: calc((100% - 30px) / 3); 
+}
+
+.div-button-container {
+    width: 100%;
+    position: relative;
+    border-bottom: 2px solid #fff;
+    /*Borderline*/
+    padding-bottom: 13px;
+   display: flex;
+    margin-bottom: 20px;
+}
+
+.div-detail-card {
+    width: 90%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 4px solid #0e83cd; 
+    margin-bottom: 30px; 
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+
+    transform: all 0.5s ease-in-out;
+}
+
+.div-card-section {
+    width: calc((100% - 30px) / 2); 
+    border-bottom: 2px solid #fff;
+}
+
+.div-list-holder {
+    display: flex; 
+    justify-content: space-around;
+    align-content: center; 
+    width: 100%; 
+    max-height: 33vw;
+    overflow: hidden;
+}
+
+.div-list-holder:hover {
+    overflow-y: auto;
+}
+
+.div-detail-viewer {
+    display: flex; 
+    justify-content: space-around;
+    align-content: center; 
+    width: 100%; 
+    max-height: 20px;
+    margin-top: 30px;
+}
+
+.div-filter-wrapper {
+    width: 88%; 
+    margin-bottom: 20px; 
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    max-width: 520px; 
+    justify-content: space-around;
+    align-content: center; 
+}
+
+/*#region listItem-Styles*/
+
+.input-base {
+    display: block;
+    width: 100%;
+    background: transparent;
+    font-family: Poppins-SemiBold;
+    font-size: 18px;
+    color: #b2c0dd;
+    border: none;
+    outline: none;
+    line-height: 1.2;
+    padding: 0 10px;
+    resize: vertical;
+}
+
+.selected-span-style {
+    font-family: Poppins-SemiBold;
+    font-size: 18px;
+}
+
+.list-style {
+    list-style-type: none; 
+    width: 100%;
+    max-width: 600px; 
+    margin: 0;
+    padding: 0;
+}
+
+.button-placer {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    outline: none;
+    border: none;
+    font-size: 12pt;
+}
+
+.button-placer:hover {
+    border-bottom: 1px solid white;
+}
+
+.button-placer:active {
+    border: 1px solid #0e83cd;
+    border-radius: 3px;
+}
+
+.delete-Button {
+    color: red;
+}
+
+.accept-button {
+    color: rgb(9, 241, 9);
+}
+
+.refresh-Button {
+    color: #fff;
+}
+
+/*#endregion listItem-Styles*/
+
+/*#endregion div-styles*/
+
+/*#region scrollbar*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #888; 
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #f1f1f1; 
+  }
+
+  .scroll-bar-ff {
+    scrollbar-color: #888 #f1f1f1;
+    scrollbar-width: thin;
+  }
+  
+/*#endregion scrollbar*/
+
+/*#region Filterbar*/
+.input-filter {
+    flex: 2;
+    background: transparent;
+    font-family: Poppins-SemiBold;
+    font-size: 18px;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none !important;
+}
+
+.input-filter:focus{
+    border-bottom: 2px solid #0e83cd;
+}
+
+.input-label {
+    background: transparent;
+    font-family: Poppins-SemiBold;
+    font-size: 18px;
+    border-right: 1px solid white;
+    padding-right: 5px;
+    margin-right: 15px;
+}
+
+/*#endregion Filterbar*/

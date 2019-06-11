@@ -308,7 +308,7 @@ h3 {
 .div-form-wrap-radio {
     width: 100%;
     position: relative;
-    border-bottom: 2px solid #fff;
+    display: flex;
     /*Borderline*/
     padding-bottom: 13px;
     margin-bottom: 20px;
@@ -323,13 +323,6 @@ h3 {
     padding-left: 5px;
 }
 
-.div-form-wrap-radio:hover {
-    border-bottom: 2px solid #0e83cd !important;
-}
-
-.div-form-wrap-radio:hover .input-descriptor-label-radio {
-    text-decoration: underline;
-}
 
 .div-half-width {
     width: calc((100% - 30px) / 2);
@@ -399,8 +392,8 @@ h3 {
 }
 
 .button-save-settings:hover {
-    width: 180px;
-    height: 60px;
+    width: 170px;
+    height: 50px;
     outline: none;
     cursor: pointer;
     background: none;
@@ -413,8 +406,8 @@ h3 {
 }
 
 .button-save-settings:active {
-    width: 170px;
-    height: 50px;
+    width: 180px;
+    height: 60px;
     color: #fff;
     background-color: #0e83cd;
     transition: .5s ease-in-out;
@@ -446,6 +439,7 @@ h3 {
     line-height: 22px;
     height: 22px;
     padding-left: 22px;
+    padding-right: 30px;
     display: block;
     position: relative;
 }

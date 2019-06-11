@@ -29,9 +29,12 @@ export class DailyEventFactory {
 
     static GetAllBreakEvents(fromString: string) {
         const allBreaks = new Array<DailyEvent>();
+        fromString = fromString.replace(/ /g, '');
+        fromString = fromString.lastIndexOf(';') === fromString.length - 1 ? fromString.slice(0, fromString.length - 1) : fromString;
+
         const breaks = fromString.split(';');
         // breaks now contains all breaks in a format start-end
-        for (const singleBreak of breaks) {
+        breaks.forEach (singleBreak => {
             const breakTime = singleBreak.split('-');
 
             // breakTime has now [0] start, and [1] end
@@ -39,7 +42,7 @@ export class DailyEventFactory {
             const breakEnd = breakTime[1].split(':');
 
             const brkStartTime = new Timestamp();
-            brkStartTime.hours = Number.parseInt(breakStart[0], 10)
+            brkStartTime.hours = Number.parseInt(breakStart[0], 10);
             brkStartTime.minutes = Number.parseInt(breakStart[1], 10);
             const brkStartEvnt = new DailyEvent();
             brkStartEvnt.eventType = ProgramState.PauseStart;
@@ -54,7 +57,7 @@ export class DailyEventFactory {
             brkEndEvnt.eventType = ProgramState.PauseEnde;
             brkEndEvnt.time = brkEndTime;
             allBreaks.push(brkEndEvnt);
-        }
+        });
         return allBreaks;
     }
 }

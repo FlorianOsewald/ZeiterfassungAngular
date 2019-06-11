@@ -18,7 +18,7 @@ export class DurationFactory {
     static GetDurationOfAllBreaks(workday: Workday) {
         let allBreaksDuration = new Duration();
 
-        const allBreakStarts = workday.DailyEvents.filter(item => item.eventType === ProgramState.PauseEnde);
+        const allBreakStarts = workday.DailyEvents.filter(item => item.eventType === ProgramState.PauseStart);
 
         const allBreakEnds = workday.DailyEvents.filter(item => item.eventType === ProgramState.PauseEnde);
 
@@ -107,17 +107,23 @@ export class DurationFactory {
 
     public static RoundToFineDuration(duration: Duration) {
         /**
-         * 50m = 0, hour up
-         * 18-49m = 30,
-         * 0-17m = 0
+         * 0-14m = runter auf 0
+         * 15-23m= 15
+         * 24-44m = 30
+         * 45-56m = 45
+         * 57-59 = rauf auf 0
          */
 
-        if (duration.Minutes >= 50) {
+        if (duration.Minutes >= 57) {
             duration.Minutes = 0;
             duration.Hours++;
-        } else if (duration.Minutes >= 18 && duration.Minutes <= 49) {
+        } else if (duration.Minutes >= 45 && duration.Minutes <= 56) {
+            duration.Minutes = 45;
+        } else if (duration.Minutes >= 24 && duration.Minutes <= 44) {
             duration.Minutes = 30;
-        } else if (duration.Minutes >= 0 && duration.Minutes <= 17) {
+        } else if (duration.Minutes >= 15 && duration.Minutes <= 23) {
+            duration.Minutes = 15;
+        } else if (duration.Minutes >= 0 && duration.Minutes <= 14) {
             duration.Minutes = 0;
         }
 

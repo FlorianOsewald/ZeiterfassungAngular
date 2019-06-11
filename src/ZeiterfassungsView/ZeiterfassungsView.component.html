@@ -1,62 +1,68 @@
 <h1>{{title}}</h1>
 <div class="div-content-box">
     <!--Ganzer Content Block-->
-    <div class="div-content-area">
-        <!--Bereich: span "Arbeit"-->
-        <div class="div-half-width">
-            <h2>Arbeitszeit</h2>
+    <div class="div-content-wrapper">
+        <div class="div-content-area div-half-width">
+            <span class="span-as-header">Arbeitszeit</span>
         </div>
-        <div class="div-half-width">
+        <div class="div-content-area div-half-width">
             <span>Gesamt: {{zeiterfassung.workday.TotalWorktime}}</span>
         </div>
     </div>
-    <div class="div-content-area div-borderless">
-        <!--Bereich: Buttons / Label "Arbeit"-->
-        <div class="div-button-label-wrapper div-half-width">
-            <div class="div-button-placer div-half-width">
-                <button class="eventButton" (click)=OnStartPressed()>Start</button>
-            </div>
-            <div class="div-label-placer div-half-width">
-                <label>{{zeiterfassung.startTime}}</label>
+    <div class="div-content-wrapper">
+        <div class="div-content-area div-half-width div-borderless">
+            <!--Bereich: Buttons / Label "Arbeit"-->
+            <div class="div-button-label-wrapper">
+                <div class="div-button-placer">
+                    <button class="eventButton" (click)=OnStartPressed()>Start</button>
+                </div>
+                <div class="div-label-placer">
+                    <label>{{zeiterfassung.startTime}}</label>
+                </div>
             </div>
         </div>
-        <div class="div-button-label-wrapper div-half-width">
-            <div class="div-button-placer div-half-width">
-                <button class="eventButton" (click)=OnEndePressed()>Ende</button>
-            </div>
-            <div class="div-label-placer div-half-width">
-                <label>{{zeiterfassung.endTime}}</label>
+        <div class="div-content-area div-half-width div-borderless">
+            <div class="div-button-label-wrapper">
+                <div class="div-button-placer">
+                    <button class="eventButton" (click)=OnEndePressed()>Ende</button>
+                </div>
+                <div class="div-label-placer">
+                    <label>{{zeiterfassung.endTime}}</label>
+                </div>
             </div>
         </div>
     </div>
     <div class="div-spacer" style="visibility: hidden">
         <span>HIDDEN, IST SPACER</span>
     </div>
-    <div class="div-content-area">
-        <!--Bereich: span "Pause"-->
-        <div class="div-half-width">
-            <h2>Pausenzeit</h2>
+    <div class="div-content-wrapper">
+        <div class="div-content-area div-half-width">
+            <span class="span-as-header">Pause</span>
         </div>
-        <div class="div-half-width">
+        <div class="div-content-area div-half-width">
             <span>Gesamt: {{zeiterfassung.workday.TotalBreakTime}}</span>
         </div>
     </div>
-    <div class="div-content-area div-borderless">
-        <!--Bereich: Buttons / Label "Pause"-->
-        <div class="div-button-label-wrapper div-half-width">
-            <div class="div-button-placer div-half-width">
-                <button class="eventButton" (click)=OnPauseStartPressed()>Start</button>
-            </div>
-            <div class="div-label-placer div-half-width">
-                <label>{{zeiterfassung.lastBreakStart}}</label>
+    <div class="div-content-wrapper">
+        <div class="div-content-area div-half-width div-borderless">
+            <!--Bereich: Buttons / Label "Arbeit"-->
+            <div class="div-button-label-wrapper">
+                <div class="div-button-placer">
+                    <button class="eventButton" (click)=OnPauseStartPressed()>Start</button>
+                </div>
+                <div class="div-label-placer">
+                    <label>{{zeiterfassung.lastBreakStart}}</label>
+                </div>
             </div>
         </div>
-        <div class="div-button-label-wrapper div-half-width">
-            <div class="div-button-placer div-half-width">
-                <button class="eventButton" (click)=OnPauseEndPressed()>Ende</button>
-            </div>
-            <div class="div-label-placer div-half-width">
-                <label>{{zeiterfassung.lastBreakEnd}}</label>
+        <div class="div-content-area div-half-width div-borderless">
+            <div class="div-button-label-wrapper">
+                <div class="div-button-placer">
+                    <button class="eventButton" (click)=OnPauseEndPressed()>Ende</button>
+                </div>
+                <div class="div-label-placer">
+                    <label>{{zeiterfassung.lastBreakEnd}}</label>
+                </div>
             </div>
         </div>
     </div>

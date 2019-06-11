@@ -1,3 +1,61 @@
-<p>
-  CorrectionsView works!
-</p>
+<h1>{{title}}</h1>
+<div class="div-content-box">
+  <div class="div-filter-wrapper">
+    <label class="input-label">
+      Datum
+    </label>
+    <input type="text" (input)=onFilterTextChanged($event.target.value) class="input-filter" />
+  </div>
+  <div class="div-list-holder scroll-bar-ff">
+    <ul class="list-style">
+      <li *ngFor="let wd of workdays.filteredDays" [class.selected]="wd === workdays.selectedDay"
+        (click)="onSelect(wd)">
+        <div *ngIf="workdays.selectedDay != wd" class="div-card">
+          <div class="div-card-section">
+            <span> {{wd}} </span>
+          </div>
+          <div class="div-card-section">
+            <span>Arbeitszeit {{wd.TotalWorktime}}</span>
+          </div>
+        </div>
+        <div *ngIf="workdays.selectedDay === wd" class="div-detail-card">
+          <!--Datum, Top Left-->
+          <div class="div-card-selected-input-wrapper div-selected-half-third">
+            <span class="selected-span-style"> Datum {{wd}} </span>
+          </div>
+          <!--Buttons, Top Right-->
+          <div class="div-card-selected-input-wrapper div-selected-half-third" style="border-bottom: 1px solid #333">
+            <button class="button-placer accept-button" style="right: 50px" (click)=onSave(wd)>&#10004;</button>
+            <button class="button-placer refresh-Button" style="right:20px" (click)=onReset()>
+              &#8635;
+              <!--<img src="..\assets\undo_small.png" alt="undo-button" width="16" height="16">-->
+            </button>
+            <button class="button-placer delete-Button" (click)=onDelete(wd)>&times;</button>
+          </div>
+          <!--Start-time, mid-left-->
+          <div class="div-card-selected-input-wrapper div-selected-half-third">
+            <span class="selected-span-style">Start</span>
+            <input class="input-base" type="text" [(ngModel)]="workdays.selectedDayStartTimeString"
+              name="correction-start-uhrzeit" placeholder=" {{wd.getArbeitStart() || 'Start-zeit' }}">
+          </div>
+          <!--Ende-time, mid-right-->
+          <div class="div-card-selected-input-wrapper div-selected-half-third">
+            <span class="selected-span-style">Ende</span>
+            <input class="input-base" type="text" [(ngModel)]="workdays.selectedDayEndTimeString"
+              name="correction-ende-uhrzeit" placeholder=" {{wd.getArbeitEnde() || 'Ende-zeit' }}">
+          </div>
+          <!--Pausen-total-time, bottom left-->
+          <div class="div-card-selected-input-wrapper div-selected-half-third">
+            <span class="selected-span-style">Pausen {{ wd.TotalBreakTime }} </span>
+          </div>
+          <!--Pausen details, bottom right-->
+          <div class="div-card-selected-input-wrapper div-selected-half-third">
+            <input class="input-base" style="padding-left: 0px" type="text"
+              [(ngModel)]="workdays.selectedDayAllBreaksString" name="correction-pause-uhrzeiten"
+              placeholder=" {{wd.getPausenZeiten() || 'Pausenzeiten' }}">
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

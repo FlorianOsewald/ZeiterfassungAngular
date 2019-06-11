@@ -1,4 +1,5 @@
-﻿import { DailyEvent } from './DailyEvent';
+﻿import { ProgramState } from 'src/app/DataStructures/ProgramState';
+import { DailyEvent } from './DailyEvent';
 import { Duration } from './Duration';
 import { VacationdayModel } from './VacationdayModel';
 import { WorkdayType } from './WorkdayType';
@@ -37,29 +38,28 @@ export class Workday {
     }
 
     toString() {
-        let retVal = this.Date.toString() + '\tArbeitszeit: ' + this.TotalWorktime;
-        switch (this.Type) {
-            case WorkdayType.Arbeitstag: {
-                retVal += '\t WD';
-                break;
+        return this.Date.toLocaleDateString();
+    }
+
+    getArbeitStart() {
+        return this.DailyEvents.find(ev => ev.eventType === ProgramState.ArbeitStart);
+    }
+
+    getArbeitEnde() {
+        return this.DailyEvents.find(ev => ev.eventType === ProgramState.ArbeitEnde);
+    }
+
+    getPausenZeiten() {
+        const breakStarts = this.DailyEvents.filter(ev => ev.eventType === ProgramState.PauseStart);
+        const breakEnds = this.DailyEvents.filter(ev => ev.eventType === ProgramState.PauseEnde);
+ 
+        if(breakEnds.length === breakStarts.length)
+        {
+            let retVal = '';
+            for(var i = 0; i < breakEnds.length; i++) {
+                retVal += breakStarts[i].time + ' - ' + breakEnds[i].time + '; ';
             }
-            case WorkdayType.FeiertagGanz: {
-                retVal += '\t HD';
-                break;
-            }
-            case WorkdayType.FeiertagHalb: {
-                retVal += '\t HD/2';
-                break;
-            }
-            case WorkdayType.UrlaubGanz: {
-                retVal += '\t V';
-                break;
-            }
-            case WorkdayType.UrlaubHalb: {
-                retVal += '\t V/2';
-                break;
-            }
+            return retVal;
         }
-        return retVal;
     }
 }

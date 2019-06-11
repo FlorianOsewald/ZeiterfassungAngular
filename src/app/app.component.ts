@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
   title = 'Zeiterfassung';
-  showZeiterfassung = true;
+  showZeiterfassung = false;
   showSettings = false;
   showCorrections = false;
-  showFeed = false;
+  showFeed = true;
 
     public OnButtonClick(origin: string) {
       switch ( origin ) {

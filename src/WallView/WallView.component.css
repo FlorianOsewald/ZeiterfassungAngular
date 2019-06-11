@@ -1,0 +1,44 @@
+/*#region header-styles*/
+h1{
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+/*#endregion header-styles*/
+
+/*#region div-styles*/
+
+.div-content-box {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    position: relative;
+    padding: 10px;
+    padding-bottom: 80px;
+    width: 70%;
+    height: auto;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 5px;
+    min-width: 240px;
+}
+
+.div-user-info {
+border: 2px solid red;
+}
+
+.div-clockr-view {
+    border: 2px solid green;
+}
+
+.div-feed-wrapper {
+    width: 70%;
+    border: 2px solid blue;
+    float: right;
+}
+
+.div-user-wrapper {
+    float: left;
+    width: 25%;
+}
+
+/*#endregion div-styles*/

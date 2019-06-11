@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./WallView.component.css']
 })
 export class WallViewComponent implements OnInit {
-
+title = 'ClockR Feed';
   constructor() { }
 
   ngOnInit() {
