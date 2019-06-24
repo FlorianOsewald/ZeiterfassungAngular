@@ -12,7 +12,7 @@
         <span>ClockR</span></label></li>
     <li title="User"><label for="tabUser" role="button">
         <span>User</span></label></li>
-    <li title="Admin"><label for="tabAdmin" role="button">
+    <li title="Admin"><label for="tabAdmin" role="button" *ngIf="userIsAdmin">
         <span>Admin</span></label></li>
   </ul>
   <div class="slider">

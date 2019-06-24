@@ -1,39 +1,27 @@
 ﻿import { ProgramState } from 'src/app/DataStructures/ProgramState';
 import { DailyEvent } from './DailyEvent';
 import { Duration } from './Duration';
-import { VacationdayModel } from './VacationdayModel';
-import { WorkdayType } from './WorkdayType';
+
 
 export class Workday {
+    id: number;
     Date: Date;
     DailyEvents: Array<DailyEvent>;
+    username: string;
 
     TotalWorktime: Duration;
     TotalBreakTime: Duration;
 
-    Type: WorkdayType;
 
-    constructor(vacationday?: VacationdayModel, workdayDate?: Date) {
-        if (vacationday === undefined) {
-            this.TotalWorktime = new Duration();
-            this.TotalBreakTime = new Duration();
-            this.Type = WorkdayType.Arbeitstag;
-            this.Date = workdayDate != null ? workdayDate : new Date();
-        } else {
-            this.Date = new Date(vacationday.date);
-            this.Type = vacationday.GetWorkdayType();
-            this.TotalBreakTime = new Duration();
-            if (this.Type === WorkdayType.FeiertagGanz || this.Type === WorkdayType.UrlaubGanz) {
-                this.TotalWorktime = new Duration();
-                this.TotalWorktime.Hours = 8;
-                this.TotalWorktime.Minutes = 0;
-            }
-            if (this.Type === WorkdayType.FeiertagHalb || this.Type === WorkdayType.UrlaubHalb) {
-                this.TotalWorktime = new Duration();
-                this.TotalWorktime.Hours = 4;
-                this.TotalWorktime.Minutes = 0;
-            }
-        }
+
+    constructor(workdayDate?: Date) {
+
+        this.TotalWorktime = new Duration();
+        this.TotalBreakTime = new Duration();
+        this.Date = workdayDate !== undefined ? workdayDate : new Date();
+
+        this.username = '';
+
         this.DailyEvents = new Array<DailyEvent>();
     }
 
@@ -42,21 +30,36 @@ export class Workday {
     }
 
     getArbeitStart() {
-        return this.DailyEvents.find(ev => ev.eventType === ProgramState.ArbeitStart);
+        var retVal = this.DailyEvents.find(ev => ev.eventType === ProgramState.ArbeitStart);
+        if (retVal === undefined ) {
+            retVal = this.DailyEvents.find(ev => ev.eventType.toString() === 'ArbeitStart');
+        }
+        return retVal;
     }
 
     getArbeitEnde() {
-        return this.DailyEvents.find(ev => ev.eventType === ProgramState.ArbeitEnde);
+        var retVal = this.DailyEvents.find(ev => ev.eventType === ProgramState.ArbeitEnde);
+        if (retVal === undefined ) {
+            retVal = this.DailyEvents.find(ev => ev.eventType.toString() === 'ArbeitEnde');
+        }
+        return retVal;
     }
 
     getPausenZeiten() {
-        const breakStarts = this.DailyEvents.filter(ev => ev.eventType === ProgramState.PauseStart);
-        const breakEnds = this.DailyEvents.filter(ev => ev.eventType === ProgramState.PauseEnde);
- 
-        if(breakEnds.length === breakStarts.length)
-        {
+        let breakStarts;
+        breakStarts = this.DailyEvents.filter(ev => ev.eventType === ProgramState.PauseStart);
+        if (breakStarts.length === 0) {
+            breakStarts = this.DailyEvents.filter(ev => ev.eventType.toString() === 'PauseStart');
+        }
+        let breakEnds;
+        breakEnds = this.DailyEvents.filter(ev => ev.eventType === ProgramState.PauseEnde);
+        if (breakEnds.length === 0) {
+            breakEnds = this.DailyEvents.filter(ev => ev.eventType.toString() === 'PauseEnde');
+        }
+
+        if (breakEnds.length === breakStarts.length) {
             let retVal = '';
-            for(var i = 0; i < breakEnds.length; i++) {
+            for (var i = 0; i < breakEnds.length; i++) {
                 retVal += breakStarts[i].time + ' - ' + breakEnds[i].time + '; ';
             }
             return retVal;

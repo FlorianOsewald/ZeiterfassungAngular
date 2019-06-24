@@ -1,19 +1,41 @@
+<body>
 <h1>{{title}}</h1>
 <div class="div-content-box">
-  <div class="div-user-wrapper">
-    <div class="div-user-info">
-      <img src="favicon.ico" width=64 height = 64/>
-      <label>Vorname Nachname</label>
-      <label>ClockR-Handle</label>
+  <!--USER SECTION-->
+  <div class="div-user-info-wrapper">
+    <div class="div-user-avatar-box">
+      <Button style="width: 100%; outline: none; border:none; cursor: pointer;" >
+        <label style="cursor: pointer">
+        <input type="file" style="display: none" (change)="uploadAvatar($event)" />
+        <img src={{currentUser.profilePicture}} width=64 height=64 class="clockr-avatar-box" alt="img" />
+      </label>
+      </Button>
+        <label class="clockr-counter"> {{clockrCounter}} </label>
     </div>
-    <div class="div-clockr-view">
-      <input type="text"/>
+    <div class="div-user-name-wrapper">
+      <label>{{currentUser.vorname}} {{currentUser.nachname}}</label>
+      <label> {{currentUser.handle}} </label>
     </div>
-    
+    <div class="div-clockr-holder">
+      <textarea class="input-base" placeholder="Teile mit anderen"
+        [(ngModel)]="dataModel.newClockr.message"></textarea>
+      <button class="button-send-clockr" (click)=sendClockr()>tweet</button>
+    </div>
   </div>
-  <div class="div-feed-wrapper">
-      <span>
-        TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSST
-      </span>
-    </div>
+
+  <!--ClockR SECTION-->
+  <div class="div-list-holder scroll-bar-ff">
+    <ul class="list-style">
+      <li *ngFor="let clockR of dataModel.filteredClockRs">
+        <div class="div-clockr-wrapper">
+          <img src={{getClockrImgString(clockR)}} width=64 height=64 class="clockr-av"/>
+          <div class="div-clockr-message-wrapper">
+            <label class="clockr-message-info"> {{ getClockrToString(clockR) }} </label>
+            <label class="clockr-message-body" id="clockRMessage" [innerHTML]="getInjectedClockrMessage(clockR.message)"> </label>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
+</body>

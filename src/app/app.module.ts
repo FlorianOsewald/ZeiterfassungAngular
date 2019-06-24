@@ -8,6 +8,8 @@ import { ZeiterfassungsViewComponent } from '../ZeiterfassungsView/Zeiterfassung
 import { SettingsViewComponent } from '../SettingsView/SettingsView.component';
 import { CorrectionsViewComponent } from '../CorrectionsView/CorrectionsView.component';
 import { WallViewComponent } from '../WallView/WallView.component';
+import { LoginViewComponent } from '../LoginView/LoginView.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
    declarations: [
@@ -16,11 +18,13 @@ import { WallViewComponent } from '../WallView/WallView.component';
       SettingsViewComponent,
       CorrectionsViewComponent,
       WallViewComponent,
+      LoginViewComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       FormsModule,
+      HttpClientModule
    ],
    providers: [],
    bootstrap: [

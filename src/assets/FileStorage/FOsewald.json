@@ -1,0 +1,33 @@
+[
+    {
+        "Date": {
+            "day": 7,
+            "month": 4,
+            "year": 2019
+        },
+        "DailyEvents": [
+            {
+                "time": {
+                    "hours": 8,
+                    "minutes": 0
+                },
+                "eventType": 0
+            },
+            {
+                "time": {
+                    "hours": 16,
+                    "minutes": 30
+                },
+                "eventType": 3
+            }
+        ],
+        "TotalWorktime": {
+            "Hours": 7,
+            "Minutes": 30
+        },
+        "TotalBreakTime": {
+            "Hours": 0,
+            "Minutes": 0
+        }
+    }
+]

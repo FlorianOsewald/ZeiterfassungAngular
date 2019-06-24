@@ -14,37 +14,32 @@ export class CorrectionsDataModel {
     selectedDayEndTimeString: string;
     selectedDayAllBreaksString: string;
 
-    constructor() {
-        const retVal = new Array<Workday>();
+    constructor(workdays?: Array<Workday>) {
 
-        for (var i = 0; i < 100; i++) {
-            var date = new Date();
-            date.setDate(date.getDate() + i);
-            retVal.push(new Workday(undefined, date));
+        if (workdays === undefined) {
+            this.workdays = new Array<Workday>();
+            this.filteredDays = new Array<Workday>();
+        } else {
+            console.log("In CorrectionsDatamodel. Checking Workdays");
+            //We now have an Array of real workdays. Now to populate the Total Times, as well as the textboxes
+            workdays.forEach(wd => {
+
+                if (wd.getArbeitEnde() !== undefined) {
+                    wd.TotalBreakTime = DurationFactory.GetDurationOfAllBreaks(wd);
+                    wd.TotalWorktime = DurationFactory.GetWorkDuration(wd);
+                }
+            });
+            this.workdays = workdays;
+            this.filteredDays = workdays;
         }
-
-        const timehour = 8;
-        const timemin = 0;
-        const time2 = new Timestamp();
-        time2.hours = timehour;
-        time2.minutes = timemin;
-        const dlyevnt = new DailyEvent();
-        dlyevnt.eventType = ProgramState.ArbeitStart;
-        dlyevnt.time = time2;
-
-        const dlyen2 = new DailyEvent();
-        dlyen2.eventType = ProgramState.ArbeitEnde;
-        dlyen2.time = time2;
-        retVal[0].DailyEvents = new Array<DailyEvent>();
-        retVal[0].DailyEvents.push(dlyevnt);
-        retVal[0].DailyEvents.push(dlyen2);
-
-        this.workdays = retVal;
-        this.filteredDays = retVal;
     }
 
-    static load() {
-        return new CorrectionsDataModel();
+    static load(workdays?: Array<Workday>) {
+        if (workdays === null) {
+            return new CorrectionsDataModel(undefined);
+        } else {
+            return new CorrectionsDataModel(workdays);
+        }
     }
 
     deleteWorkday(wd: Workday) {
@@ -82,9 +77,9 @@ export class CorrectionsDataModel {
                     this.workdays[index].TotalWorktime = DurationFactory.GetWorkDuration(this.workdays[index]);
                 }
             }
+            this.resyncArrays();
+            this.setSelectedWorkday(wd);
         }
-        this.resyncArrays();
-        this.setSelectedWorkday(wd);
     }
 
     revertWorkday() {
@@ -118,7 +113,7 @@ export class CorrectionsDataModel {
         if (input === '') {
             this.resetFilter();
         } else {
-                this.filterWorkdays(input);
+            this.filterWorkdays(input);
         }
     }
 

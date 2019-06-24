@@ -1,0 +1,20 @@
+<h1>{{title}}</h1>
+<div class="div-content-box">
+  <h2 *ngIf="loginFailed">Username oder Passwort falsch.</h2>
+    <form class="form-Base" autocomplete="off">
+        <div class="div-input-wrapper div-half-width">
+          <span class="input-descriptor-label">Login</span>
+          <input class="input-base" type="text"name="username" [(ngModel)]="dataModel.username" placeholder="username">
+          <span class="span-focus"></span>
+        </div>
+        <div class="div-input-wrapper div-half-width">
+          <span class="input-descriptor-label">Passwort</span>
+          <input class="input-base" type="password" name="password" [(ngModel)]="dataModel.password" placeholder="Passwort">
+          <span class="span-focus"></span>
+        </div>
+        <div style="width: 100%; display: flex; justify-content: space-around; margin-top: 50px">
+          <button class="button-save-settings" (click)="OnLoginTry()">Login</button>
+        </div>
+      </form>
+</div>
+

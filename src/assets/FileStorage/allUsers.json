@@ -1,0 +1,44 @@
+[
+    {
+        "username": "FOsewald",
+        "password": "FOsewald",
+        "userRolle": 0,
+        "profilePicture": "./assets/87141.png",
+        "workStartClockrMessage": "",
+        "breakStartClockrMessage": "",
+        "breakEndClockrMessage": "",
+        "workEndClockrMessage": "",
+        "vorname": "Florian",
+        "nachname": "Osewald",
+        "anrede": "Herr",
+        "handle": "@TestingDude91"
+    },
+    {
+        "username": "FOsewald2",
+        "password": "FOsewald2",
+        "userRolle": 1,
+        "profilePicture": "./assets/87141.png",
+        "workStartClockrMessage": "",
+        "breakStartClockrMessage": "",
+        "breakEndClockrMessage": "",
+        "workEndClockrMessage": "",
+        "vorname": "Florian",
+        "nachname": "Osewald",
+        "anrede": "Osewald-Chef",
+        "handle": "@Chef"
+    },
+    {
+        "username": "FOsewald3",
+        "password": "FOsewald3",
+        "userRolle": 2,
+        "profilePicture": "./assets/87141.png",
+        "workStartClockrMessage": "",
+        "breakStartClockrMessage": "",
+        "breakEndClockrMessage": "",
+        "workEndClockrMessage": "",
+        "vorname": "Florian",
+        "nachname": "Osewald-Anrede",
+        "anrede": "Herr",
+        "handle": "@Admin"
+    }
+]

@@ -3,6 +3,7 @@ import { Timestamp } from './Timestamp';
 
 
 export class DailyEvent {
+    id: number;
     time: Timestamp;
     eventType: ProgramState;
 

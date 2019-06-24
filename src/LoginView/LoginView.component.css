@@ -1,0 +1,139 @@
+h1 {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+h2 {
+    color: red;
+}
+
+.div-content-box {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    position: relative;
+    padding: 50px;
+    padding-bottom: 80px;
+    width: 70%;
+    height: auto;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 5px;
+    min-width: 240px;
+}
+
+.form-Base {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 68px;
+}
+
+.div-input-wrapper {
+    width: 100%;
+    position: relative;
+    border-bottom: 2px solid #fff;
+    /*Borderline*/
+    padding-bottom: 13px;
+    margin-bottom: 20px;
+}
+
+.div-input-wrapper:focus-within {
+    border-bottom: 2px solid #0e83cd !important;
+}
+
+.div-input-wrapper:focus-within .input-descriptor-label {
+    text-decoration: underline;
+}
+
+.input-descriptor-label {
+    font-family: Poppins-Regular;
+    font-size: 20px;
+    color: #fff;
+    /*Label Farbe*/
+    line-height: 1.5;
+    padding-left: 5px;
+}
+
+.input-base {
+    display: block;
+    width: 100%;
+    background: transparent;
+    font-family: Poppins-SemiBold;
+    font-size: 18px;
+    color: #b2c0dd;
+    /*Schriftfarbe in Inputfeldern*/
+    border: none;
+    outline: none;
+    line-height: 1.2;
+    padding: 0 5px;
+    resize: vertical;
+}
+
+.span-focus {
+    z-index: 2;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.span-focus:focus {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.div-half-width {
+    width: calc((100% - 30px) / 2);
+}
+
+.button-save-settings {
+    width: 160px;
+    height: 40px;
+    outline: none;
+    cursor: pointer;
+    background: none;
+    transition: .5s;
+    font-size: 24px;
+    border-radius: 5px;
+    font-family: "Lato", sans-serif;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.button-save-settings:hover {
+    width: 170px;
+    height: 50px;
+    outline: none;
+    cursor: pointer;
+    background: none;
+    font-size: 24px;
+    border-radius: 5px;
+    font-family: "Lato", sans-serif;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+    color: #0e83cd;
+}
+
+.button-save-settings:active {
+    width: 180px;
+    height: 60px;
+    color: #fff;
+    background-color: #0e83cd;
+    transition: .5s ease-in-out;
+}

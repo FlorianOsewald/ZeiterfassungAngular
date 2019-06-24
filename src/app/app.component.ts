@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from './DataStructures/User';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,16 @@ export class AppComponent {
   showZeiterfassung = false;
   showSettings = false;
   showCorrections = false;
-  showFeed = true;
+  showFeed = false;
+  showLogin = true;
+  currentUser: User;
+
+  loginStatusChanged(loggedInUser: User) {
+      this.showZeiterfassung = true;
+      this.showLogin = false;
+      this.currentUser = loggedInUser;
+      console.log("In AppComponent: User that logged in: "); console.log(this.currentUser);
+  }
 
     public OnButtonClick(origin: string) {
       switch ( origin ) {
