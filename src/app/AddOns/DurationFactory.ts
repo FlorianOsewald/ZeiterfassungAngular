@@ -18,9 +18,9 @@ export class DurationFactory {
     static GetDurationOfAllBreaks(workday: Workday) {
         let allBreaksDuration = new Duration();
 
-        const allBreakStarts = workday.DailyEvents.filter(item => item.eventType.toString() === 'PauseStart');
+        const allBreakStarts = workday.dailyEvents.filter(item => item.eventType === ProgramState.PauseStart);
 
-        const allBreakEnds = workday.DailyEvents.filter(item => item.eventType.toString() === 'PauseEnde');
+        const allBreakEnds = workday.dailyEvents.filter(item => item.eventType === ProgramState.PauseEnde);
 
         if (allBreakStarts.length === allBreakEnds.length) {
             for (let i = 0; i < allBreakEnds.length; i++) {
@@ -35,9 +35,10 @@ export class DurationFactory {
 
     static GetWorkDuration(workday: Workday) {
         // First WorkEnd - WorkStart. Then add up ALL breaks, check if theyre bigger than 45m and subtract the breaktime from worktime. Then Round to fine number
-        const startWork = workday.DailyEvents.find(item => item.eventType.toString() === 'ArbeitStart');
+        
+        const startWork = workday.dailyEvents.find(item => item.eventType === ProgramState.ArbeitStart);
 
-        const endWork = workday.DailyEvents.find(item => item.eventType.toString() === 'ArbeitEnde');
+        const endWork = workday.dailyEvents.find(item => item.eventType === ProgramState.ArbeitEnde);
 
         // The method does exactly what we need, so dont get confused by its name
         const totalWorkTimePreBreaks = DurationFactory.GetBreakDuration(startWork, endWork);

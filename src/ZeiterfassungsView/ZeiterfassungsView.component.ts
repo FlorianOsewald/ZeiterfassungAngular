@@ -9,6 +9,8 @@ import { ProgramState } from 'src/app/DataStructures/ProgramState';
 import { DailyEvent } from 'src/app/DataStructures/DailyEvent';
 import { Timestamp } from 'src/app/DataStructures/Timestamp';
 import { User } from 'src/app/DataStructures/User';
+import { IDailyEvent } from 'src/app/DataStructures/IDailyEvent';
+import { IWorkday } from 'src/app/DataStructures/IWorkday';
 
 @Component({
   selector: 'app-ZeiterfassungsView',
@@ -31,51 +33,35 @@ export class ZeiterfassungsViewComponent implements OnInit, OnDestroy {
     console.log('OnInit von ZeiterfassungsView. CurrentUser: ');
     console.log(this.currentUser);
 
-    this.workdayService.getWorkdayTodayByUser(this.currentUser.username).subscribe((data: Workday) => {
-      console.log('workdayService.getWorkdayTodayByUser Returned: ');
-      console.log(data);
-      let tmpWd;
+    var wdPromise = this.workdayService.getWorkdayTodayByUser(this.currentUser.username).toPromise();
+
+    var workday: Workday;
+
+    wdPromise.then(data => {
       if (data === null) {
-        this.zeiterfassung = ZeiterfassungDataModel.load();
-        this.zeiterfassung.workday.username = this.currentUser.username;
-        this.workdayService.createWorkday(this.zeiterfassung.workday).subscribe(data => console.log(data));
+        workday = new Workday();
+        workday.username = this.currentUser.username;
+        this.workdayService.createWorkday(workday).subscribe(data => console.log(data));
       } else {
-        // Wir haben einen Workday. Also holen wir uns dafür die DailyEvent Daten.
-        tmpWd = data;
-        this.dailyEventService.getDailyEventsOfWorkday(tmpWd.id).subscribe((dailyEventData: Array<DailyEvent>) => {
-          console.log(dailyEventData);
-          // Jetzt haben wir allerdings nur Objects mit den selben Attributen. aber keine actual klassen vom Type DailyEvent. Daher müssen wir uns nun selbst ein Object zusammenbauen
-          // dailyEventData ist ein Array<Object>
-          const realEvents = new Array<DailyEvent>();
-          dailyEventData.forEach(de => {
-            let evntTimeObj = { hours: de.time.hours, minutes: de.time.minutes };
-            let evntTime = new Timestamp();
-            Object.assign(evntTime, evntTimeObj);
-            // Now evntTime is a real Timestamp object
+        var dailyEventArray = new Array<DailyEvent>();
 
-            // Now all necessary classes are real typed objects
-
-            let dailyEventObj = { id: de.id, time: evntTime, eventType: de.eventType };
-            let dailyEvnt = new DailyEvent();
-            Object.assign(dailyEvnt, dailyEventObj);
-
-            realEvents.push(dailyEvnt);
-            // Now realEvent holds a real DailyEvent Objects instead of a Any Object
-          });
-
-          tmpWd.DailyEvents = realEvents;
-          this.zeiterfassung = ZeiterfassungDataModel.load(tmpWd);
+        data.dailyEvents.forEach(ev => {
+          ev.time = new Timestamp(undefined, ev.time);
+          dailyEventArray.push(new DailyEvent(ev));
         });
+        data.dailyEvents = dailyEventArray;
+        workday = new Workday(data);
       }
     });
 
+    wdPromise.finally(() => this.zeiterfassung = ZeiterfassungDataModel.load(workday));
   }
 
   ngOnDestroy(): void {
   }
 
   OnStartPressed() {
-    if (this.zeiterfassung.state === ProgramState.ArbeitEnde && this.zeiterfassung.workday.DailyEvents.find(de => de.eventType.toString() === 'ArbeitStart') === undefined) {
+    if (this.zeiterfassung.state === ProgramState.ArbeitEnde && this.zeiterfassung.workday.dailyEvents.find(de => de.eventType === ProgramState.ArbeitStart) === undefined) {
       this.zeiterfassung.startTime = new Date().toLocaleTimeString();
       this.processNewEvent(ProgramState.ArbeitStart);
     }
@@ -108,20 +94,30 @@ export class ZeiterfassungsViewComponent implements OnInit, OnDestroy {
     newEvent.eventType = type;
     newEvent.time = new Timestamp(new Date());
 
-    this.dailyEventService.createDailyEvent(newEvent, this.zeiterfassung.workday).subscribe((data: DailyEvent) => {
-      newEvent = data;
+    this.dailyEventService.createDailyEvent(newEvent, this.zeiterfassung.workday).subscribe((data: IDailyEvent) => {
+      data.time = new Timestamp(undefined, data.time);
+      newEvent = new DailyEvent(data);
       console.log('Creating DailyEvent for Type: ' + type);
       console.log(data);
 
-      this.zeiterfassung.workday.DailyEvents.push(newEvent);
+      this.zeiterfassung.workday.dailyEvents.push(newEvent);
 
       console.log('updating Workday with new Event');
-      this.workdayService.updateWorkday(this.zeiterfassung.workday.id, this.zeiterfassung.workday).subscribe((data: Workday) => {
-        console.log(data);
-        this.zeiterfassung.workday = data;
+      this.workdayService.updateWorkday(this.zeiterfassung.workday.id, this.zeiterfassung.workday).subscribe((wdData: IWorkday) => {
+        console.log(wdData);
+
+        var dailyEventArray = new Array<DailyEvent>();
+
+        wdData.dailyEvents.forEach(ev => {
+          ev.time = new Timestamp(undefined, ev.time);
+          dailyEventArray.push(new DailyEvent(ev));
+        });
+        wdData.dailyEvents = dailyEventArray;
+        this.zeiterfassung.workday = new Workday(wdData);
+
 
         if (type === ProgramState.PauseEnde || type === ProgramState.ArbeitEnde) {
-          this.ngOnInit();
+          this.zeiterfassung.updateTotalTimes();
         }
 
         this.zeiterfassung.state = type;

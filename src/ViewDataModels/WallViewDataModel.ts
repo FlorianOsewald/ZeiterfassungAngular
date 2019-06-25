@@ -39,10 +39,10 @@ export class WallViewDataModel {
 
         this.filteredClockRs.sort( function (a,b) {
             if(a.time > b.time) {
-                return 1;
+                return -1;
             }
             if(a.time < b.time) {
-                return -1;
+                return 1;
             } else {
                 return 0;
             }

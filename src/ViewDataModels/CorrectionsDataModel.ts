@@ -21,7 +21,6 @@ export class CorrectionsDataModel {
             this.filteredDays = new Array<Workday>();
         } else {
             console.log("In CorrectionsDatamodel. Checking Workdays");
-            //We now have an Array of real workdays. Now to populate the Total Times, as well as the textboxes
             workdays.forEach(wd => {
 
                 if (wd.getArbeitEnde() !== undefined) {
@@ -35,7 +34,8 @@ export class CorrectionsDataModel {
     }
 
     static load(workdays?: Array<Workday>) {
-        if (workdays === null) {
+
+        if (workdays === null || workdays === undefined) {
             return new CorrectionsDataModel(undefined);
         } else {
             return new CorrectionsDataModel(workdays);
@@ -54,21 +54,21 @@ export class CorrectionsDataModel {
         const index = this.workdays.indexOf(wd, 0);
         if (index > -1) {
             if (this.selectedDayStartTimeString !== '' || this.selectedDayEndTimeString !== '' || this.selectedDayAllBreaksString !== '') {
-                this.workdays[index].DailyEvents = new Array<DailyEvent>();
+                this.workdays[index].dailyEvents = new Array<DailyEvent>();
 
                 if (this.selectedDayStartTimeString !== '') {
                     const startEvent = DailyEventFactory.GetArbeitsstartEvent(this.selectedDayStartTimeString);
-                    this.workdays[index].DailyEvents.push(startEvent);
+                    this.workdays[index].dailyEvents.push(startEvent);
                 }
 
                 if (this.selectedDayEndTimeString !== '') {
                     const endeEvent = DailyEventFactory.GetArbeitEndeEvent(this.selectedDayEndTimeString);
-                    this.workdays[index].DailyEvents.push(endeEvent);
+                    this.workdays[index].dailyEvents.push(endeEvent);
                 }
 
                 if (this.selectedDayAllBreaksString !== '') {
                     DailyEventFactory.GetAllBreakEvents(this.selectedDayAllBreaksString).forEach(element => {
-                        this.workdays[index].DailyEvents.push(element);
+                        this.workdays[index].dailyEvents.push(element);
                     });
                     this.workdays[index].TotalBreakTime = DurationFactory.GetDurationOfAllBreaks(this.workdays[index]);
                 }
@@ -98,7 +98,7 @@ export class CorrectionsDataModel {
 
     filterWorkdays(filter: string) {
         this.filteredDays = this.workdays.filter(element => {
-            const dateString = element.Date.toLocaleDateString();
+            const dateString = element.date.toLocaleDateString();
             if (dateString.indexOf(filter) > -1) {
                 return true;
             }

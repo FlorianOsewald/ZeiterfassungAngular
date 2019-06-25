@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { IUser } from '../DataStructures/IUser';
+import { User } from '../DataStructures/User';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +13,23 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUsersList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
+  getUsersList(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${this.baseUrl}`);
   }
 
-  CreateUser(user: Object) : Observable<Object> {
-    return this.http.post(`${this.baseUrl}` + `/create`, user);
+  CreateUser(user: Object) : Observable<IUser> {
+    return this.http.post<IUser>(`${this.baseUrl}` + `/create`, user);
   }
 
-  updateUser(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/${id}`, value);
+  updateUser(id: number, value: any): Observable<IUser> {
+    return this.http.put<IUser>(`${this.baseUrl}/${id}`, value);
   }
 
-  getUserByUsername(username: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/username/}${username}`);
+  getUserByUsername(username: string): Observable<IUser> {
+    return this.http.get<IUser>(`${this.baseUrl}/username/}${username}`);
+  }
+
+  postUserToLogIn(user: User) : Observable<IUser> {
+    return this.http.post<IUser>(this.baseUrl + '/login', user);
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LoginViewDataModel } from 'src/ViewDataModels/LoginViewDataModel';
 import { User } from 'src/app/DataStructures/User';
-import { Observable } from 'rxjs';
 import { UserService } from 'src/app/Services/User.service';
 
 
@@ -17,8 +16,7 @@ export class LoginViewComponent implements OnInit {
   title = 'Willkommen bei ClockR';
   dataModel: LoginViewDataModel;
   loginFailed: boolean;
-  //allUsers: Observable<User[]>;
-  allUsers: User[];
+
 
   constructor(private userService: UserService) {
     this.loginFailed = false;
@@ -27,42 +25,20 @@ export class LoginViewComponent implements OnInit {
 
   ngOnInit() {
     this.dataModel = LoginViewDataModel.load();
-    this.userService.getUsersList().subscribe(data => this.allUsers = data);
   }
 
   OnLoginTry() {
-    console.log("LoginView. All Users:");
-    console.log(this.allUsers);
-    var possibleUser;
-    possibleUser = this.allUsers.find(el => el.password === this.dataModel.password && el.username === this.dataModel.username);
-    if (possibleUser !== undefined) {
-      this.onLoginStatusChanged.emit(possibleUser);
-    } else {
-      this.loginFailed = true;
-    }
-  }
-    /*
-    this.allUsers.subscribe(data => console.log(data));
-    var possibleUser;
-    this.allUsers.subscribe((data) => possibleUser = data.find(el => el.password === this.dataModel.password && el.username === this.dataModel.username));
-
-    if (possibleUser !== undefined) {
-      this.onLoginStatusChanged.emit(possibleUser);
-    } else {
-      this.loginFailed = true;
-    }
-  }
-
-  /*
-  this.allUsers.forEach(el => console.log(el));
-  var possibleUser;
-  this.allUsers.forEach(el => {
-    possibleUser = el.find(e => e.password === this.dataModel.password && e.username === this.dataModel.username);
-    if (possibleUser !== undefined) {
-      this.onLoginStatusChanged.emit(possibleUser as User);
-    } else {
-      this.loginFailed = true;
-    }
-  });*/
-
+    var newUser = new User();
+    newUser.password = this.dataModel.password;
+    newUser.username = this.dataModel.username;
+    this.userService.postUserToLogIn(newUser).subscribe(data => {
+      console.log(data);
+      if (data === null ) {
+        this.loginFailed = true;
+      } else {
+        newUser = new User(data);
+        this.onLoginStatusChanged.emit(newUser);
+      }
+    });
+  } 
 }

@@ -16,8 +16,8 @@ export class ClockrService {
 
   constructor(private http: HttpClient) { }
 
-  createClockr(clockr: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}` + `/create`, clockr);
+  createClockr(clockr: Object): Observable<IClockr> {
+    return this.http.post<IClockr>(`${this.baseUrl}` + `/create`, clockr);
   }
 
   getClockrList(): Observable<Array<IClockr>> {

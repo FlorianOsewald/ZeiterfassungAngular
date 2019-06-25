@@ -16,13 +16,11 @@ export class ZeiterfassungDataModel {
     state: ProgramState;
 
     constructor(wd?: Workday) {
-        console.log("Constructing Zeiterfassungsdatamodel with Workday: ");
-        console.log(wd);
         if (wd === undefined) {
             console.log("WD Undefined, creating a new one");
             this.workday = new Workday();
-            this.workday.Date = new Date();
-            this.workday.DailyEvents = new Array<DailyEvent>();
+            this.workday.date = new Date();
+            this.workday.dailyEvents = new Array<DailyEvent>();
             this.workday.TotalBreakTime = new Duration();
             this.workday.TotalWorktime = new Duration();
 
@@ -35,62 +33,45 @@ export class ZeiterfassungDataModel {
         } else {
             console.log("WD Provided. Transfering Data to current object");
             this.workday = wd;
-            this.workday.TotalBreakTime = new Duration();
-            this.workday.TotalWorktime = new Duration();
             this.state = ProgramState.ArbeitEnde;
             this.startTime = '-/-';
             this.endTime = '-/-';
             this.lastBreakStart = '-/-';
             this.lastBreakEnd = '-/-';
 
-            if (this.workday.DailyEvents !== undefined) {
-                // tslint:disable-next-line: max-line-length
-                const wdObj = { id: this.workday.id, username: this.workday.username, DailyEvents: this.workday.DailyEvents, Date: this.workday.Date, TotalBreakTime: this.workday.TotalBreakTime, TotalWorktime: this.workday.TotalWorktime };
-                Object.assign(this.workday, wdObj);
+            if (this.workday.dailyEvents !== undefined) {
 
-                const wStart = 'ArbeitStart';
-                const bStart = 'PauseStart';
-                const bEnd = 'PauseEnde';
-                const wEnd = 'ArbeitEnde';
-
-                if (this.workday.DailyEvents.find(de => de.eventType.toString() === wStart) !== undefined) {
+                if (this.workday.dailyEvents.find(de => de.eventType === ProgramState.ArbeitStart) !== undefined) {
                     this.state = ProgramState.ArbeitStart;
-                    const evnt = this.workday.DailyEvents.find(de => de.eventType.toString() === wStart);
-                    this.startTime = ZeiterfassungDataModel.assignObjAsTimespan(evnt);
+                    const evnt = this.workday.dailyEvents.find(de => de.eventType === ProgramState.ArbeitStart);
+                    this.startTime = evnt.time.toString();
                 }
-                if (this.workday.DailyEvents.find(de => de.eventType.toString() === bStart) !== undefined) {
+                if (this.workday.dailyEvents.find(de => de.eventType === ProgramState.PauseStart) !== undefined) {
                     this.state = ProgramState.PauseStart;
-                    var index = this.workday.DailyEvents.filter(de => de.eventType.toString() === bStart).length - 1;
-                    const evnt = this.workday.DailyEvents.filter(de => de.eventType.toString() === bStart)[index];
-                    this.lastBreakStart = ZeiterfassungDataModel.assignObjAsTimespan(evnt);
+                    var index = this.workday.dailyEvents.filter(de => de.eventType === ProgramState.PauseStart).length - 1;
+                    const evnt = this.workday.dailyEvents.filter(de => de.eventType === ProgramState.PauseStart)[index];
+                    this.lastBreakStart = evnt.time.toString();
                 }
-                if (this.workday.DailyEvents.find(de => de.eventType.toString() === bEnd) !== undefined) {
-                    var indexStart = this.workday.DailyEvents.filter(de => de.eventType.toString() === bStart).length - 1;
-                    var index = this.workday.DailyEvents.filter(de => de.eventType.toString() === bEnd).length - 1;
-                    const evnt = this.workday.DailyEvents.filter(de => de.eventType.toString() === bEnd)[index];
-                    this.lastBreakEnd = ZeiterfassungDataModel.assignObjAsTimespan(evnt);
+                if (this.workday.dailyEvents.find(de => de.eventType === ProgramState.PauseEnde) !== undefined) {
+                    var indexStart = this.workday.dailyEvents.filter(de => de.eventType === ProgramState.PauseStart).length - 1;
+                    var index = this.workday.dailyEvents.filter(de => de.eventType === ProgramState.PauseEnde).length - 1;
+                    const evnt = this.workday.dailyEvents.filter(de => de.eventType === ProgramState.PauseEnde)[index];
+                    this.lastBreakEnd = evnt.time.toString();
                     this.state = indexStart === index ? ProgramState.PauseEnde : ProgramState.PauseStart;
                     this.workday.TotalBreakTime = DurationFactory.GetDurationOfAllBreaks(this.workday);
                 }
-                if (this.workday.DailyEvents.find(de => de.eventType.toString() === wEnd) !== undefined) {
+                if (this.workday.dailyEvents.find(de => de.eventType === ProgramState.ArbeitEnde) !== undefined) {
                     this.state = ProgramState.ArbeitEnde;
-                    const evnt = this.workday.DailyEvents.find(de => de.eventType.toString() === wEnd)
-                    this.endTime = ZeiterfassungDataModel.assignObjAsTimespan(evnt);
+                    const evnt = this.workday.dailyEvents.find(de => de.eventType === ProgramState.ArbeitEnde)
+                    this.endTime = evnt.time.toString();
                     this.workday.TotalWorktime = DurationFactory.GetWorkDuration(this.workday);
                 }
             } else {
-                this.workday.DailyEvents = new Array<DailyEvent>();
+                this.workday.dailyEvents = new Array<DailyEvent>();
             }
 
         }
 
-    }
-
-    private static assignObjAsTimespan(obj: any): string {
-        let timeObj = { hours: obj.time.hours, minutes: obj.time.minutes };
-        let time = new Timestamp();
-        Object.assign(time, timeObj);
-        return time.toString();
     }
 
     static load(wd?: Workday): ZeiterfassungDataModel {
@@ -100,4 +81,12 @@ export class ZeiterfassungDataModel {
         return new ZeiterfassungDataModel(wd);
     }
 
+    updateTotalTimes() {
+        if (this.workday.dailyEvents.find(de => de.eventType === ProgramState.PauseEnde) !== undefined) {
+            this.workday.TotalBreakTime = DurationFactory.GetDurationOfAllBreaks(this.workday);
+        }
+        if (this.workday.dailyEvents.find(de => de.eventType === ProgramState.ArbeitEnde) !== undefined) {
+            this.workday.TotalWorktime = DurationFactory.GetWorkDuration(this.workday);
+        }
+    }
 }

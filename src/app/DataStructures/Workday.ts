@@ -1,61 +1,51 @@
 ﻿import { ProgramState } from 'src/app/DataStructures/ProgramState';
 import { DailyEvent } from './DailyEvent';
 import { Duration } from './Duration';
+import { IWorkday } from './IWorkday';
+import { IDailyEvent } from './IDailyEvent';
 
 
-export class Workday {
+export class Workday implements IWorkday {
     id: number;
-    Date: Date;
-    DailyEvents: Array<DailyEvent>;
+    date: Date;
+    dailyEvents: Array<IDailyEvent>;
     username: string;
 
     TotalWorktime: Duration;
     TotalBreakTime: Duration;
 
-
-
-    constructor(workdayDate?: Date) {
-
+    constructor(data ?: IWorkday) {
+        
+        this.id = data !== undefined ? data.id : undefined;
         this.TotalWorktime = new Duration();
         this.TotalBreakTime = new Duration();
-        this.Date = workdayDate !== undefined ? workdayDate : new Date();
+        this.date = data !== undefined ? new Date(data.date) : new Date();
 
-        this.username = '';
+        this.username = data !== undefined ? data.username : '';
 
-        this.DailyEvents = new Array<DailyEvent>();
+        this.dailyEvents = data !== undefined ? data.dailyEvents : new Array<DailyEvent>();
     }
 
     toString() {
-        return this.Date.toLocaleDateString();
+        return this.date.toLocaleDateString();
     }
 
     getArbeitStart() {
-        var retVal = this.DailyEvents.find(ev => ev.eventType === ProgramState.ArbeitStart);
-        if (retVal === undefined ) {
-            retVal = this.DailyEvents.find(ev => ev.eventType.toString() === 'ArbeitStart');
-        }
+        var retVal = this.dailyEvents.find(ev => ev.eventType === ProgramState.ArbeitStart);
         return retVal;
     }
 
     getArbeitEnde() {
-        var retVal = this.DailyEvents.find(ev => ev.eventType === ProgramState.ArbeitEnde);
-        if (retVal === undefined ) {
-            retVal = this.DailyEvents.find(ev => ev.eventType.toString() === 'ArbeitEnde');
-        }
+        var retVal = this.dailyEvents.find(ev => ev.eventType === ProgramState.ArbeitEnde);
         return retVal;
     }
 
     getPausenZeiten() {
         let breakStarts;
-        breakStarts = this.DailyEvents.filter(ev => ev.eventType === ProgramState.PauseStart);
-        if (breakStarts.length === 0) {
-            breakStarts = this.DailyEvents.filter(ev => ev.eventType.toString() === 'PauseStart');
-        }
+        breakStarts = this.dailyEvents.filter(ev => ev.eventType === ProgramState.PauseStart);
+
         let breakEnds;
-        breakEnds = this.DailyEvents.filter(ev => ev.eventType === ProgramState.PauseEnde);
-        if (breakEnds.length === 0) {
-            breakEnds = this.DailyEvents.filter(ev => ev.eventType.toString() === 'PauseEnde');
-        }
+        breakEnds = this.dailyEvents.filter(ev => ev.eventType === ProgramState.PauseEnde);
 
         if (breakEnds.length === breakStarts.length) {
             let retVal = '';
