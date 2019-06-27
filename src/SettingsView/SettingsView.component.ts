@@ -27,7 +27,7 @@ export class SettingsViewComponent implements OnInit {
     console.log(this.currentUser);
     this.settings = SettingsDataModel.load(this.currentUser);
 
-    this.userIsAdmin = this.currentUser.userRolle.toString() === 'Admin';
+    this.userIsAdmin = this.currentUser.userRolle === UserRole.Admin;
 
     this.passwordsDontMatch = false;
     this.notAllDataEntered = false;

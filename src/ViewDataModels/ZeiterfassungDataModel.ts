@@ -17,7 +17,6 @@ export class ZeiterfassungDataModel {
 
     constructor(wd?: Workday) {
         if (wd === undefined) {
-            console.log("WD Undefined, creating a new one");
             this.workday = new Workday();
             this.workday.date = new Date();
             this.workday.dailyEvents = new Array<DailyEvent>();
@@ -31,7 +30,6 @@ export class ZeiterfassungDataModel {
             this.lastBreakEnd = '-/-';
             this.state = ProgramState.ArbeitEnde;
         } else {
-            console.log("WD Provided. Transfering Data to current object");
             this.workday = wd;
             this.state = ProgramState.ArbeitEnde;
             this.startTime = '-/-';

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { UserService } from './Services/User.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from './DataStructures/User';
 
 @Component({
@@ -6,7 +7,7 @@ import { User } from './DataStructures/User';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   title = 'Zeiterfassung';
   showZeiterfassung = false;
   showSettings = false;
@@ -14,6 +15,12 @@ export class AppComponent {
   showFeed = false;
   showLogin = true;
   currentUser: User;
+
+  constructor(private userService : UserService) {}
+
+  ngOnDestroy(): void {
+    console.log("Und tschüss!");
+  }
 
   loginStatusChanged(loggedInUser: User) {
       this.showZeiterfassung = true;
@@ -51,6 +58,10 @@ export class AppComponent {
           this.showCorrections = false;
           this.showFeed = true;
           break;
+        }
+        case 'Logout': {
+          this.userService.logUserOut().subscribe(data => console.log(data));
+          window.location.reload();
         }
       }
   }
