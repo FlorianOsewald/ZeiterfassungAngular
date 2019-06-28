@@ -57,11 +57,13 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Zeiterfassung:build"
+            "browserTarget": "Zeiterfassung:build",
+              "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Zeiterfassung:build:production"
+              "browserTarget": "Zeiterfassung:build:production",
+              "proxyConfig": "proxy.conf.json"
             }
           }
         },

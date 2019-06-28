@@ -12,7 +12,7 @@ import { IClockr } from '../DataStructures/IClockr';
 })
 export class ClockrService {
 
-  private baseUrl = 'http://localhost:8080/api/clockr';
+  private baseUrl = 'http://localhost:4200/api/clockr';
 
   constructor(private http: HttpClient) { }
 

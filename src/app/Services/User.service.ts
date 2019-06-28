@@ -9,7 +9,7 @@ import { User } from '../DataStructures/User';
 })
 export class UserService {
 
-  private baseUrl = 'http://localhost:8080/api/users';
+  private baseUrl = 'http://localhost:4200/api/users';
 
   constructor(private http: HttpClient) { }
 

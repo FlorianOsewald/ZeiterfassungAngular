@@ -9,7 +9,7 @@ import { IDailyEvent } from '../DataStructures/IDailyEvent';
 })
 export class DailyEventService {
 
-  private baseUrl = 'http://localhost:8080/api/dailyEvents';
+  private baseUrl = 'http://localhost:4200/api/dailyEvents';
 
   constructor(private http: HttpClient) { }
 

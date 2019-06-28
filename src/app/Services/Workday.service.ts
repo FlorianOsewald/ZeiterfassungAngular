@@ -8,7 +8,7 @@ import { IWorkday } from '../DataStructures/IWorkday';
 })
 export class WorkdayService {
 
-private baseUrl = 'http://localhost:8080/api/workdays';
+private baseUrl = 'http://localhost:4200/api/workdays';
 
 constructor(private http: HttpClient) { }
 
