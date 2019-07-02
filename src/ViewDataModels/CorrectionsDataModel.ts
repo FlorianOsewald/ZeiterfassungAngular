@@ -3,7 +3,6 @@ import { DailyEventFactory } from './../app/AddOns/DailyEventFactory';
 import { ProgramState } from './../app/DataStructures/ProgramState';
 import { Workday } from 'src/app/DataStructures/Workday';
 import { DailyEvent } from 'src/app/DataStructures/DailyEvent';
-import { Timestamp } from 'src/app/DataStructures/Timestamp';
 
 export class CorrectionsDataModel {
     workdays: Array<Workday>;
@@ -28,6 +27,18 @@ export class CorrectionsDataModel {
                     wd.TotalWorktime = DurationFactory.GetWorkDuration(wd);
                 }
             });
+
+            workdays.sort( function (a, b) {
+                if(a.date > b.date) {
+                    return -1;
+                }
+                if(a.date < b.date) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
+
             this.workdays = workdays;
             this.filteredDays = workdays;
         }

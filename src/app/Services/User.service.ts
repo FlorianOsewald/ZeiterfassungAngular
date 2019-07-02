@@ -30,7 +30,7 @@ export class UserService {
   }
 
   postUserToLogIn(user: User) : Observable<IUser> {
-    return this.http.post<IUser>(this.baseUrl + '/login', user);
+    return this.http.post<any>(this.baseUrl + '/login', user);
   }
 
   logUserOut() : Observable<any> {

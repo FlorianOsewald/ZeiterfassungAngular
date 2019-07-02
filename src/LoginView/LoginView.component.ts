@@ -4,6 +4,7 @@ import { User } from 'src/app/DataStructures/User';
 import { UserService } from 'src/app/Services/User.service';
 
 
+
 @Component({
   selector: 'app-LoginView',
   templateUrl: './LoginView.component.html',
@@ -28,17 +29,18 @@ export class LoginViewComponent implements OnInit {
   }
 
   OnLoginTry() {
-    var newUser = new User();
+
+    let newUser = new User();
     newUser.password = this.dataModel.password;
     newUser.username = this.dataModel.username;
-    this.userService.postUserToLogIn(newUser).subscribe(data => {
-      console.log(data);
-      if (data === null ) {
-        this.loginFailed = true;
-      } else {
+
+    this.userService.postUserToLogIn(newUser).subscribe((data) => {
+
         newUser = new User(data);
+
         this.onLoginStatusChanged.emit(newUser);
-      }
-    });
-  } 
+      }, (err) => {
+        this.loginFailed = true;
+      });
+  }
 }

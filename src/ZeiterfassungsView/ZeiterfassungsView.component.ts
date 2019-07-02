@@ -33,18 +33,17 @@ export class ZeiterfassungsViewComponent implements OnInit, OnDestroy {
     console.log('OnInit von ZeiterfassungsView. CurrentUser: ');
     console.log(this.currentUser);
 
-    this.workdayService.getWorkdayList().subscribe(data => console.log(data));
-
     var wdPromise = this.workdayService.getWorkdayTodayByUser(this.currentUser.username).toPromise();
 
     var workday: Workday;
 
     wdPromise.then(data => {
+      
       if (data === null) {
         console.log("no Workday, creating a new one");
         workday = new Workday();
         workday.username = this.currentUser.username;
-        this.workdayService.createWorkday(workday).subscribe(data => console.log(data));
+        this.workdayService.createWorkday(workday).subscribe(data => console.log(new Workday(data)));
       } else {
         console.log("workday provided");
         var dailyEventArray = new Array<DailyEvent>();
